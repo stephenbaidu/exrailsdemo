@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <a id="project_name" class="navbar-brand nav-h" href="#/">
-        eXRails App
+        <img src="images/logo.jpg" alt="" height="45px" width="120px">
       </a>
     </div>
     <div class="navbar-collapse collapse">
@@ -19,16 +19,16 @@
             Dashboard
           </a>
         </li>
-        <li ng-if="user.client.id === 1" ng-class='{ active: hasUrl("/admin") }'>
-          <a href="#/admin">
-            <span class="fa fa-cogs"></span>
-            Administration Menu
-          </a>
-        </li>
         <li ng-class='{ active: hasUrl("/reports") }'>
           <a href="#/reports">
             <span class="fa fa-bar-chart"></span>
             Reports
+          </a>
+        </li>
+        <li ng-class='{ active: hasUrl("/admin") }'>
+          <a href="#/admin">
+            <span class="fa fa-cogs"></span>
+            Admin
           </a>
         </li>
       </ul>

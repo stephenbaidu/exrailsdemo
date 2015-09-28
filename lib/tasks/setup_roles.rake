@@ -7,12 +7,12 @@ namespace :app do
       {
         name: 'Manager',
         permissions: [
-          'sample:icsud', 'sample_status:is'
+          'apartment_building:icsu', 'apartment:icsu', 'guests:icsu', 'apartment_booking:icsu'
         ]
       }, {
         name: 'Clerk',
         permissions: [
-          'sample:ics', 'sample_status:is'
+          'apartment_building:is', 'apartment:is', 'guests:icsu', 'apartment_booking:icsu'
         ]
       }
     ].each do |role|

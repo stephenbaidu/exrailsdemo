@@ -8,3 +8,5 @@ rails g model gender name
 rails g model guest name gender:references date_of_birth:date first_language
 rails g model booking_status name
 rails g model apartment_booking apartment:references guest:references booking_start_date:date booking_end_date:date booking_status:references comments
+
+rake exrails:ng apartment_building apartment guest apartment_booking

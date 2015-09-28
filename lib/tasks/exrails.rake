@@ -22,7 +22,9 @@ namespace :exrails do
     # Generate components for models
     models.each do |model|
       begin
-        ng_generate_component_files(model.classify.constantize)
+        klass = model.classify.constantize
+        ng_generate_component_files(klass)
+        insert_component_scripts(klass)
       rescue
       end
     end
@@ -48,7 +50,7 @@ namespace :exrails do
     dir = File.join(components_dir, klass.name.pluralize.underscore.dasherize)
     Dir.mkdir(dir) unless File.directory?(dir)
 
-    # Generate views: index.html, new.html, show.html, edit.html
+    # Generate views: index, new, show, edit, uploads & bulk
     ['index', 'new', 'show', 'edit', 'uploads', 'bulk'].each do |action|
       file_path = File.join(dir, "#{action}.html")
       File.open(file_path, 'w') do |file|
@@ -71,6 +73,10 @@ namespace :exrails do
       config_tpl.gsub! '/* MODELKEY */', klass.name.underscore
       file.write(config_tpl)
     end unless File.exists?(file_path)
+  end
+
+  def insert_component_scripts(klass)
+    # use a ruby implementation
   end
 
   def resourcified_models

@@ -11,7 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209150005) do
+ActiveRecord::Schema.define(version: 20150924182716) do
+
+  create_table "apartment_bookings", force: :cascade do |t|
+    t.integer  "apartment_id"
+    t.integer  "guest_id"
+    t.date     "booking_start_date"
+    t.date     "booking_end_date"
+    t.integer  "booking_status_id"
+    t.string   "comments"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "apartment_bookings", ["apartment_id"], name: "index_apartment_bookings_on_apartment_id"
+  add_index "apartment_bookings", ["booking_status_id"], name: "index_apartment_bookings_on_booking_status_id"
+  add_index "apartment_bookings", ["guest_id"], name: "index_apartment_bookings_on_guest_id"
+
+  create_table "apartment_buildings", force: :cascade do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.string   "description"
+    t.string   "address"
+    t.string   "manager"
+    t.string   "phone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "apartment_facilities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apartment_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apartments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "apartment_building_id"
+    t.integer  "apartment_type_id"
+    t.string   "apartment_number"
+    t.integer  "no_of_bathrooms"
+    t.integer  "no_of_bedrooms"
+    t.integer  "no_of_rooms"
+    t.integer  "availability_status_id"
+    t.string   "apartment_facility_ids", default: "--- []\n"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "apartments", ["apartment_building_id"], name: "index_apartments_on_apartment_building_id"
+  add_index "apartments", ["apartment_type_id"], name: "index_apartments_on_apartment_type_id"
+  add_index "apartments", ["availability_status_id"], name: "index_apartments_on_availability_status_id"
+
+  create_table "availability_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "booking_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,6 +96,23 @@ ActiveRecord::Schema.define(version: 20150209150005) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "genders", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "gender_id"
+    t.date     "date_of_birth"
+    t.string   "first_language"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "guests", ["gender_id"], name: "index_guests_on_gender_id"
 
   create_table "permissions", force: :cascade do |t|
     t.string   "name"

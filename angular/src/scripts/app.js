@@ -55,9 +55,10 @@ app.constant('APP', {
   },
   modules: {
     main: [
-      { text: 'Users', url: 'users', icon: 'fa fa-users color-deep-purple-300' },
-      { text: 'Roles', url: 'roles', icon: 'glyphicon glyphicon-user color-red-100' },
-      { text: 'UserForm', url: 'form/users', icon: 'fa fa-user color-teal-500' }
+      { text: 'Buildings', url: 'apartment-buildings', icon: 'fa fa-users color-deep-purple-300' },
+      { text: 'Apartments', url: 'apartments', icon: 'glyphicon glyphicon-user color-red-100' },
+      { text: 'Guests', url: 'guests', icon: 'fa fa-user color-teal-500' },
+      { text: 'Bookings', url: 'apartment-bookings', icon: 'fa fa-user color-teal-500' }
     ],
     admin: [
       { text: 'Users', url: 'users', icon: 'fa fa-briefcase color-deep-purple-300' },

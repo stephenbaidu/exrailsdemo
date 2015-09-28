@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       post 'bulk_upload', on: :member
     end
     resources :roles
+    resources :apartment_buildings
+    resources :apartments
+    resources :guests
+    resources :apartment_bookings
 
     # Reports
     get 'reports/:action'  => 'reports#:action', :defaults => {
